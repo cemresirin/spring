@@ -1,6 +1,10 @@
 spring:
-  application:
+  profiles:
+    active: dev
+
+    application:
     name: Spring Project
+
 server:
   port: 8082
 
