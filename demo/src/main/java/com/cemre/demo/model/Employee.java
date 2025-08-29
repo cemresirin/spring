@@ -20,9 +20,11 @@ public class Employee {
     private String username;
     private String email;
     private String department;
+    private Double salary;
 
 
     public void setId(Long id) {
+
     }
 }
 

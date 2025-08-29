@@ -43,6 +43,20 @@ public class EmployeeService {
         return employeeRepository.findByDepartment(department);
 
     }
+
+    public List<Employee> findSalaryGreaterThan(double amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount must be >0");
+        }
+        return employeeRepository.findSalaryGreaterThan(amount);
+    }
+
+    public List<Employee> findDepartmentByQuery(String dept) {
+        if (dept==null || dept.isEmpty()) {
+            throw new IllegalArgumentException(("Department cannot be null or empty"));
+        }
+        return employeeRepository.findDepartmentByQuery(dept);
+    }
 }
 
 
