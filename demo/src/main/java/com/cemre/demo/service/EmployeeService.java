@@ -29,12 +29,24 @@ public class EmployeeService {
 
     }
 
-        public void deleteEmployee (Long id){
-            if (employeeRepository.existsById(id)) {
-                employeeRepository.deleteById(id);
-            }
+    public void deleteEmployee(Long id) {
+        if (employeeRepository.existsById(id)) {
+            employeeRepository.deleteById(id);
         }
     }
+
+    public List<Employee> findByUserNameContaining(String username) {
+        return employeeRepository.findByUsernameContaining(username);
+    }
+
+    public List<Employee> findByDepartment(String department) {
+        return employeeRepository.findByDepartment(department);
+
+    }
+}
+
+
+
 
 
 
