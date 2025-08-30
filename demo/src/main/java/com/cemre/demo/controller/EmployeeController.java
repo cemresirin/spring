@@ -2,6 +2,7 @@ package com.cemre.demo.controller;
 
 import com.cemre.demo.model.Employee;
 import com.cemre.demo.service.EmployeeService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,6 +58,14 @@ public class EmployeeController {
     @GetMapping("/department")
     public List<Employee>findDepartmentByQuery(@RequestParam(value = "department") String dept) {
         return employeeService.findDepartmentByQuery(dept);
+    }
+
+    @GetMapping
+    public Page<Employee> getAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id") String sortBy) {
+        return employeeService.getAllEmployees(page, size, sortBy);
     }
 }
 

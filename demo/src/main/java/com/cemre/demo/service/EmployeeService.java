@@ -2,6 +2,10 @@ package com.cemre.demo.service;
 
 import com.cemre.demo.model.Employee;
 import com.cemre.demo.repository.EmployeeRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,10 +56,15 @@ public class EmployeeService {
     }
 
     public List<Employee> findDepartmentByQuery(String dept) {
-        if (dept==null || dept.isEmpty()) {
+        if (dept == null || dept.isEmpty()) {
             throw new IllegalArgumentException(("Department cannot be null or empty"));
         }
         return employeeRepository.findDepartmentByQuery(dept);
+    }
+
+    public Page<Employee> getAllEmployees(int page, int size, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
+        return employeeRepository.findAll(pageable);
     }
 }
 

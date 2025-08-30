@@ -1,6 +1,8 @@
 package com.cemre.demo.repository;
 
 import com.cemre.demo.model.Employee;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,4 +22,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Query (value = "SELECT * FROM employees WHERE department = :dept", nativeQuery = true)
     List<Employee> findDepartmentByQuery(@Param("dept") String dept);
 
+    Page<Employee> findAll(Pageable pageable);
 }
