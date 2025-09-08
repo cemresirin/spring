@@ -1,7 +1,9 @@
 package com.cemre.demo.controller;
 
-import com.cemre.demo.model.User;
+import com.cemre.demo.dto.request.UserRequest;
+import com.cemre.demo.dto.response.UserResponse;
 import com.cemre.demo.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,18 +17,18 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public User saveUser(@RequestBody User user) {
+    public UserResponse createUser(@RequestBody UserRequest user) {
         return userService.createUser(user);
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
+    public UserResponse getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
     @PutMapping("/update/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user) {
-        return userService.updateUser(id, user);
+    public UserResponse updateUser(@PathVariable Long id, @RequestBody UserRequest request) {
+        return userService.updateUser(id, request);
     }
 
     @DeleteMapping("/delete/{id}")
