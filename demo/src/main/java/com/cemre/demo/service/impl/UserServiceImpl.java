@@ -20,6 +20,21 @@ public class UserServiceImpl implements UserService {
         this.modelMapper = modelMapper;
     }
 
+    //@Override
+    //public UserResponse createUser(UserRequest userRequest) {
+    //    User user =new User();
+    //    user.setUsername(userRequest.userRequest.getUsername());
+    //    user.setEmail(userRequest.userRequest.getEmail());
+    //    user.setPassword(userRequest.userRequest.getPassword());
+
+    //    User newUser = userRepository.save(user);
+
+    //    UserResponse userResponse = new UserResponse();
+    //    userResponse.setUsername(newUser.getUsername());
+    //    userResponse.setEmail(newUser.getEmail());
+
+    //    return userResponse;
+
     @Override
     @Transactional
     public UserResponse createUser(UserRequest request) {
@@ -50,7 +65,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void deleteUser(Long id) {
         User deleteUser = userRepository.findById(id).orElse(null);
         userRepository.delete(deleteUser);
